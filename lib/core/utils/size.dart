@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+///GLobal class for accessing screen sizes
 class ScreenSize {
   static double width = 0;
   static double height = 0;
@@ -13,6 +14,13 @@ class ScreenSize {
     ScreenSize.scaleFactor = scale;
     ScreenSize.orientation = orientation;
   }
+
+  static void initWindow(MediaQueryData data) {
+    ScreenSize.width = data.size.width;
+    ScreenSize.height = data.size.height;
+    ScreenSize.scaleFactor = data.textScaleFactor;
+    ScreenSize.orientation = data.orientation;
+  }
 }
 
 extension Sizes on num {
@@ -23,16 +31,14 @@ extension Sizes on num {
   double get rem => this * 14;
 }
 
-///Widget For Wrapping Sizes
+///Widget For Changing Size Changes(Combined Widget of [LayoutBuilder] and [OrientationBuilder]).If u dont wanna use this,Use [ScreenSize.initWindow] for custom changes.
 class SizeWrapper extends StatelessWidget {
   final Widget child;
-
-  ///Default is true
-  final bool changeOnOrientation;
+  final bool changeWidthAndHeightOnOrientation;
   const SizeWrapper({
     Key? key,
     required this.child,
-    this.changeOnOrientation = true,
+    this.changeWidthAndHeightOnOrientation = true,
   }) : super(key: key);
 
   @override
@@ -45,7 +51,7 @@ class SizeWrapper extends StatelessWidget {
         data.textScaleFactor,
         data.orientation,
       );
-      return changeOnOrientation
+      return changeWidthAndHeightOnOrientation
           ? OrientationBuilder(
               builder: (context, orientation) {
                 ScreenSize.init(
