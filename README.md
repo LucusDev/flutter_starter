@@ -8,10 +8,10 @@ This project is a starting point for a Flutter application.
 
 ## Used Frameworks
 
-> -Hive for database **Enter**
-> -Riverpod for statemanagement **Enter**
-> -dio for requesting data from apis **Enter**
-> -MVC for architecture **Enter**
+> -Hive for database **Enter**(space, space, Enter)
+> -Riverpod for statemanagement **Enter**(space, space, Enter)
+> -dio for requesting data from apis **Enter**(space, space, Enter)
+> -MVC for architecture **Enter**(space, space, Enter)
 
 ## Useful commands
 
